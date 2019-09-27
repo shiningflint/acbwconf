@@ -3,7 +3,7 @@ language en_US.UTF-8
 " Vim plug commands
 " PlugStatus to check the status of plugins
 " PlugInstall to install plugins
-" Plug 'w0ng/vim-hybrid'
+" To uninstall, delete Plug line, then PlugClean
 call plug#begin('~/.vim/plugged')
 
 Plug 'tpope/vim-commentary'
@@ -15,12 +15,14 @@ Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'posva/vim-vue'
-Plug 'w0ng/vim-hybrid'
+Plug 'nanotech/jellybeans.vim'
 
 call plug#end()
 
 set background=dark
-colorscheme hybrid
+" colorscheme hybrid
+" colorscheme apprentice
+colorscheme jellybeans
 
 filetype plugin indent on
 " On pressing tab, insert 2 spaces
