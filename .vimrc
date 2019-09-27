@@ -15,14 +15,15 @@ Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'posva/vim-vue'
-Plug 'nanotech/jellybeans.vim'
+Plug 'morhetz/gruvbox'
 
 call plug#end()
 
 set background=dark
 " colorscheme hybrid
 " colorscheme apprentice
-colorscheme jellybeans
+" colorscheme jellybeans
+colorscheme gruvbox
 
 filetype plugin indent on
 " On pressing tab, insert 2 spaces
