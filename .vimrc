@@ -16,6 +16,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'posva/vim-vue'
 Plug 'morhetz/gruvbox'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 call plug#end()
 
@@ -24,6 +25,16 @@ set background=dark
 " colorscheme apprentice
 " colorscheme jellybeans
 colorscheme gruvbox
+
+" make jk or jj leave insert mode
+inoremap jj <esc>
+inoremap jk <esc>
+
+" Remap keys for gotos
+nmap <silent> gd <Plug>(coc-definition)
+" nmap <silent> gy <Plug>(coc-type-definition)
+" nmap <silent> gi <Plug>(coc-implementation)
+" nmap <silent> gr <Plug>(coc-references)
 
 filetype plugin indent on
 " On pressing tab, insert 2 spaces
