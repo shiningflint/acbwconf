@@ -14,9 +14,7 @@ Plug 'scrooloose/nerdtree'
 Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
-Plug 'posva/vim-vue'
 Plug 'morhetz/gruvbox'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 call plug#end()
 
@@ -30,11 +28,19 @@ colorscheme gruvbox
 inoremap jj <esc>
 inoremap jk <esc>
 
+" COC stuff
+" use command :CocConfig to open the configuration file
 " Remap keys for gotos
-nmap <silent> gd <Plug>(coc-definition)
+" nmap <silent> gd <Plug>(coc-definition)
 " nmap <silent> gy <Plug>(coc-type-definition)
 " nmap <silent> gi <Plug>(coc-implementation)
 " nmap <silent> gr <Plug>(coc-references)
+
+" Open vue files as html
+autocmd BufRead,BufNewFile *.vue setfiletype html
+
+" Ctags settings
+set tags=tags
 
 filetype plugin indent on
 " On pressing tab, insert 2 spaces
