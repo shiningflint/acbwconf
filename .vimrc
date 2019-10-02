@@ -8,6 +8,7 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
+Plug 'tpope/vim-fugitive'
 Plug 'christoomey/vim-system-copy'
 Plug 'vim-airline/vim-airline'
 Plug 'scrooloose/nerdtree'
@@ -36,11 +37,12 @@ inoremap jk <esc>
 " nmap <silent> gi <Plug>(coc-implementation)
 " nmap <silent> gr <Plug>(coc-references)
 
+" ctags directory
+set notagrelative
+set tags=.git/tags
+
 " Open vue files as html
 autocmd BufRead,BufNewFile *.vue setfiletype html
-
-" Ctags settings
-set tags=tags
 
 filetype plugin indent on
 " On pressing tab, insert 2 spaces
@@ -54,6 +56,9 @@ set shiftwidth=2
 set backspace=2 " make backspace work like most other programs
 
 set number
+
+" set relativenumber for relative line
+set relativenumber
 
 " set highlight search
 set hlsearch
