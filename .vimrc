@@ -11,19 +11,20 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-fugitive'
 Plug 'christoomey/vim-system-copy'
 Plug 'vim-airline/vim-airline'
+Plug 'crusoexia/vim-monokai'
 Plug 'scrooloose/nerdtree'
 Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
-Plug 'morhetz/gruvbox'
 
 call plug#end()
 
 set background=dark
 " colorscheme hybrid
 " colorscheme apprentice
+colorscheme monokai
 " colorscheme jellybeans
-colorscheme gruvbox
+" colorscheme gruvbox
 
 " make jk or jj leave insert mode
 inoremap jj <esc>
@@ -62,3 +63,12 @@ set relativenumber
 
 " set highlight search
 set hlsearch
+
+" set vertical split right
+set splitright
+
+" highlight every matched pattern
+set incsearch
+
+" case insensitive on search
+set ic
