@@ -26,26 +26,39 @@ colorscheme monokai
 " colorscheme jellybeans
 " colorscheme gruvbox
 
+" run matchit for HTML jumps with %
+runtime macros/matchit.vim
+
 " make jk or jj leave insert mode
 inoremap jj <esc>
-inoremap jk <esc>
 
-" COC stuff
-" use command :CocConfig to open the configuration file
-" Remap keys for gotos
-" nmap <silent> gd <Plug>(coc-definition)
-" nmap <silent> gy <Plug>(coc-type-definition)
-" nmap <silent> gi <Plug>(coc-implementation)
-" nmap <silent> gr <Plug>(coc-references)
+" Reload syntax highlighting with F12
+noremap <F12> <Esc>:syntax sync fromstart<CR>
+inoremap <F12> <C-o>:syntax sync fromstart<CR>
 
-" ctags directory
-set notagrelative
-set tags=.git/tags
+" Remap Files fzf
+map <leader>t :Files<CR>
+map <leader>ts :Files src/<CR>
+map <leader>ta :Files app/<CR>
 
-" Open vue files as html
-autocmd BufRead,BufNewFile *.vue setfiletype html
+" map NERDTreeFind
+map <leader>\ :NERDTreeFind<CR>
+
+" tags setup
+set tags^=./.git/tags;
 
 filetype plugin indent on
+
+" Open vue files as html
+" autocmd BufRead,BufNewFile *.vue setfiletype html
+au FileType vue set filetype=html
+
+" Auto remove trailing whitespace on save
+autocmd FileType rb,js,go,php,vue,html autocmd BufWritePre <buffer> %s/\s\+$//e
+
+set dir=$HOME/.vim/tmp/swap
+if !isdirectory(&dir) | call mkdir(&dir, 'p', 0700) | endif
+
 " On pressing tab, insert 2 spaces
 set expandtab
 " show existing tab with 2 spaces width
