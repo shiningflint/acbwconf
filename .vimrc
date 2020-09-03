@@ -51,7 +51,7 @@ filetype plugin indent on
 
 " Open vue files as html
 " autocmd BufRead,BufNewFile *.vue setfiletype html
-au FileType vue set filetype=html
+au FileType vue set filetype=html.javascript
 
 " Auto remove trailing whitespace on save
 autocmd FileType rb,js,go,php,vue,html autocmd BufWritePre <buffer> %s/\s\+$//e
