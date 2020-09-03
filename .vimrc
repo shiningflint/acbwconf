@@ -12,6 +12,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'christoomey/vim-system-copy'
 Plug 'vim-airline/vim-airline'
 Plug 'crusoexia/vim-monokai'
+Plug 'junegunn/seoul256.vim'
 Plug 'scrooloose/nerdtree'
 Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
@@ -22,9 +23,11 @@ call plug#end()
 set background=dark
 " colorscheme hybrid
 " colorscheme apprentice
-colorscheme monokai
+" colorscheme monokai
 " colorscheme jellybeans
 " colorscheme gruvbox
+let g:seoul256_background = 235
+colorscheme seoul256
 
 " run matchit for HTML jumps with %
 runtime macros/matchit.vim
