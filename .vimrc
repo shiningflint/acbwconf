@@ -11,7 +11,6 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-fugitive'
 Plug 'christoomey/vim-system-copy'
 Plug 'vim-airline/vim-airline'
-Plug 'crusoexia/vim-monokai'
 Plug 'junegunn/seoul256.vim'
 Plug 'scrooloose/nerdtree'
 Plug '/usr/local/opt/fzf'
@@ -46,6 +45,7 @@ map <leader>ts :Files src/<CR>
 map <leader>ta :Files app/<CR>
 
 " map NERDTreeFind
+map <leader>nt :NERDTree<CR>
 map <leader>\ :NERDTreeFind<CR>
 
 " tags setup
