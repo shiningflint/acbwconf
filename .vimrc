@@ -20,7 +20,7 @@ Plug 'carmonw/elm-vim'
 
 call plug#end()
 
-set background=dark
+" set background=dark
 " colorscheme hybrid
 " colorscheme apprentice
 " colorscheme monokai
@@ -29,11 +29,14 @@ set background=dark
 
 
 " Seoul256 background color range
+" if you use this, the 'set background' will not work
+" use 'colo instead'
 " dark range    - 233 ~ 239
 " light range   - 252 ~ 256
-" let g:seoul256_background = 235
-let g:seoul256_background = 252
-colorscheme seoul256
+let g:seoul256_background = 235
+let g:seoul256_light_background = 252
+colo seoul256
+" colo seoul256-light
 
 " run matchit for HTML jumps with %
 runtime macros/matchit.vim
