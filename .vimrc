@@ -26,7 +26,13 @@ set background=dark
 " colorscheme monokai
 " colorscheme jellybeans
 " colorscheme gruvbox
-let g:seoul256_background = 235
+
+
+" Seoul256 background color range
+" dark range    - 233 ~ 239
+" light range   - 252 ~ 256
+" let g:seoul256_background = 235
+let g:seoul256_background = 252
 colorscheme seoul256
 
 " run matchit for HTML jumps with %
