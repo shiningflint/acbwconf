@@ -16,7 +16,7 @@ Plug 'scrooloose/nerdtree'
 Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
-Plug 'carmonw/elm-vim'
+Plug 'elmcast/elm-vim'
 
 call plug#end()
 
@@ -98,3 +98,52 @@ set incsearch
 
 " case insensitive on search
 set ic
+
+" -- ABBREVIATIONS
+iab VUE <template>
+      \<CR><div></div>
+      \<CR></template>
+      \<CR>
+      \<CR><script>
+      \<CR>export default {
+      \<CR>name: 'Component',
+      \<CR>}
+      \<CR></script>
+
+iab ELMST module Main exposing (main)
+      \<CR>import Browser
+      \<CR>import Html exposing (..)
+      \<CR>-- MODEL
+      \<CR>type alias Model = Int
+      \<CR>init : Model
+      \<CR>init = 0
+      \<CR>-- UPDATE
+      \<CR>update : msg -> Model -> Model
+      \<CR>update msg model = model
+      \<CR>-- VIEW
+      \<CR>view : Model -> Html msg
+      \<CR>view model = div [] [ text "Hello babanas" ]
+      \<CR>main = Browser.sandbox { init = init, update = update, view = view }
+
+iab ELMSPA module Main exposing (main)
+      \<CR>import Browser
+      \<CR>import Html exposing (..)
+      \<CR>import Url
+      \<CR>-- MODEL
+      \<CR>type alias Model = Int
+      \<CR>init : () -> url -> key -> ( Model, Cmd Msg )
+      \<CR>init _ url key = ( 0, Cmd.none )
+      \<CR>-- UPDATE
+      \<CR>type Msg = UrlChange \| UrlRequest
+      \<CR>update : Msg -> Model -> ( Model, Cmd Msg )
+      \<CR>update msg model = ( model, Cmd.none )
+      \<CR>onUrlChange : Url.Url -> Msg
+      \<CR>onUrlChange url = UrlChange
+      \<CR>onUrlRequest : Browser.UrlRequest -> Msg
+      \<CR>onUrlRequest urlRequest = UrlRequest
+      \<CR>subscriptions : Model -> Sub Msg
+      \<CR>subscriptions model = Sub.none
+      \<CR>-- VIEW
+      \<CR>view : Model -> Browser.Document Msg
+      \<CR>view model = { title = "Main title" , body = [ div [] [ text "Hello babanas" ] ] }
+      \<CR>main = Browser.application { init = init , update = update , view = view , onUrlChange = onUrlChange , onUrlRequest = onUrlRequest , subscriptions = subscriptions }
