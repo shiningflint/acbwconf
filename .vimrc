@@ -19,6 +19,7 @@ Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'carmonw/elm-vim'
+Plug 'elixir-editors/vim-elixir'
 
 call plug#end()
 
@@ -100,3 +101,13 @@ set incsearch
 
 " case insensitive on search
 set ic
+
+" Teach vim to syntax highlight Vagrantfile as ruby
+"
+" Install: $HOME/.vim/plugin/vagrant.vim
+" Author: Brandon Philips <brandon@ifup.org>
+
+augroup vagrant
+  au!
+  au BufRead,BufNewFile Vagrantfile set filetype=ruby
+augroup END
