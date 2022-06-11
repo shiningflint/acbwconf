@@ -9,36 +9,54 @@ call plug#begin('~/.vim/plugged')
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-fugitive'
+Plug 'dhruvasagar/vim-zoom'
 Plug 'christoomey/vim-system-copy'
 Plug 'vim-airline/vim-airline'
 Plug 'kana/vim-textobj-user'
 Plug 'tek/vim-textobj-ruby'
 Plug 'junegunn/seoul256.vim'
+" Plug 'vim-scripts/pink'
 Plug 'scrooloose/nerdtree'
 Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'elmcast/elm-vim'
 Plug 'elixir-editors/vim-elixir'
+Plug 'AndrewRadev/splitjoin.vim'
 
 call plug#end()
 
 " set background=dark
+" set background=light
 " colorscheme hybrid
 " colorscheme apprentice
 " colorscheme monokai
 " colorscheme jellybeans
 " colorscheme gruvbox
 
+" Cherry Blossom color
+" syntax on
+" set background=light
+" colorscheme cherryblossom
+
+" Pink
+" colorscheme pink
+
+" Strawberry color
+" colorscheme strawberry-dark
 
 " Seoul256 background color range
 " if you use this, the 'set background' will not work
 " use 'colo instead'
 " dark range    - 233 ~ 239
 " light range   - 252 ~ 256
+
+" Seoul256 dark
 let g:seoul256_background = 235
-let g:seoul256_light_background = 252
 colo seoul256
+
+" Seoul256 light
+" let g:seoul256_light_background = 256
 " colo seoul256-light
 
 " run matchit for HTML jumps with %
@@ -51,27 +69,39 @@ inoremap jj <esc>
 noremap <F12> <Esc>:syntax sync fromstart<CR>
 inoremap <F12> <C-o>:syntax sync fromstart<CR>
 
+" Buffer switching
+nnoremap <F5> :Buffers<CR>
+
 " Remap Files fzf
 map <leader>t :Files<CR>
 map <leader>ts :Files src/<CR>
 map <leader>ta :Files app/<CR>
+map <leader>ts :Files spec/<CR>
 map <leader>tc :Files config/<CR>
 
 " map NERDTreeFind
 map <leader>nt :NERDTree<CR>
 map <leader>\ :NERDTreeFind<CR>
 
-" tags setup
-set tags^=./.git/tags;
+" Clear white spaces
+map <leader>cw :%s/\s\+$//e<CR>
 
-filetype plugin indent on
+" Ag search selected
+" map <leader>g :exe 'Ag!' expand('<cword>')<CR>
+map <leader>g "hy:Ag <C-r>h<CR>
+
+" tags setup
+set tags^=./tags;
+
+" I DON'T KNOW WHAT THIS IS, JUST TURNED IT OFF
+" filetype plugin indent on
 
 " Open vue files as html
-" autocmd BufRead,BufNewFile *.vue setfiletype html
 au FileType vue set filetype=html.javascript
 
 " Auto remove trailing whitespace on save
-autocmd FileType rb,js,go,php,vue,html autocmd BufWritePre <buffer> %s/\s\+$//e
+" I've been using <leader>cw all the time, this ain't needed
+" autocmd FileType rb,js,go,php,vue,html autocmd BufWritePre <buffer> %s/\s\+$//e
 
 set dir=$HOME/.vim/tmp/swap
 if !isdirectory(&dir) | call mkdir(&dir, 'p', 0700) | endif
@@ -102,6 +132,10 @@ set incsearch
 
 " case insensitive on search
 set ic
+
+" Set hidden will hide unsaved files instead of closing it.
+" For now, I'm using it for search and replace multiple sources
+set hidden
 
 " Teach vim to syntax highlight Vagrantfile as ruby
 "
@@ -136,7 +170,7 @@ function! YAMLTree()
 endfunction
 
 " map yaml function
-map <leader>ys :let @+ = YAMLTree()<CR>
+map <leader>ys :let @+ = substitute(YAMLTree(), "^[^\.]*\.", "", "")<CR>
 map <leader>ya :let @+ .= "\n" . YAMLTree()<CR>
 
 " -- ABBREVIATIONS
@@ -187,3 +221,7 @@ iab ELMSPA module Main exposing (main)
       \<CR>view : Model -> Browser.Document Msg
       \<CR>view model = { title = "Main title" , body = [ div [] [ text "Hello babanas" ] ] }
       \<CR>main = Browser.application { init = init , update = update , view = view , onUrlChange = onUrlChange , onUrlRequest = onUrlRequest , subscriptions = subscriptions }
+
+iab etag <%= %><Left><Left><Left>
+iab etags <%= t("").html_safe %><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left>
+iab etagt <%= t("") %><Left><Left><Left><Left><Left>
