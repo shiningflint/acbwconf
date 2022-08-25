@@ -15,6 +15,7 @@ Plug 'vim-airline/vim-airline'
 Plug 'kana/vim-textobj-user'
 Plug 'tek/vim-textobj-ruby'
 Plug 'junegunn/seoul256.vim'
+Plug 'morhetz/gruvbox'
 " Plug 'vim-scripts/pink'
 Plug 'scrooloose/nerdtree'
 Plug '/usr/local/opt/fzf'
@@ -34,16 +35,15 @@ call plug#end()
 " colorscheme jellybeans
 " colorscheme gruvbox
 
-" Cherry Blossom color
-" syntax on
-" set background=light
-" colorscheme cherryblossom
-
 " Pink
 " colorscheme pink
 
-" Strawberry color
-" colorscheme strawberry-dark
+" Gruvbox
+set background=dark
+let g:gruvbox_transparent_bg = 1
+let g:gruvbox_contrast_dark = 'soft'
+let g:gruvbox_number_column = 'bg1'
+colorscheme gruvbox
 
 " Seoul256 background color range
 " if you use this, the 'set background' will not work
@@ -52,8 +52,8 @@ call plug#end()
 " light range   - 252 ~ 256
 
 " Seoul256 dark
-let g:seoul256_background = 235
-colo seoul256
+" let g:seoul256_background = 235
+" colo seoul256
 
 " Seoul256 light
 " let g:seoul256_light_background = 256
@@ -90,6 +90,9 @@ map <leader>cw :%s/\s\+$//e<CR>
 " map <leader>g :exe 'Ag!' expand('<cword>')<CR>
 map <leader>g "hy:Ag <C-r>h<CR>
 
+" FZF fuzzy search history
+map <leader>r :History:<CR>
+
 " tags setup
 set tags^=./tags;
 
@@ -98,6 +101,9 @@ set tags^=./tags;
 
 " Open vue files as html
 au FileType vue set filetype=html.javascript
+
+" add jbuilder syntax highlighting
+au BufNewFile,BufRead *.json.jbuilder set ft=ruby
 
 " Auto remove trailing whitespace on save
 " I've been using <leader>cw all the time, this ain't needed
@@ -124,6 +130,9 @@ set relativenumber
 " set highlight search
 set hlsearch
 
+" set search count
+set shortmess-=S
+
 " set vertical split right
 set splitright
 
@@ -141,6 +150,17 @@ set hidden
 "
 " Install: $HOME/.vim/plugin/vagrant.vim
 " Author: Brandon Philips <brandon@ifup.org>
+
+" https://stackoverflow.com/questions/21316727/automatic-closing-brackets-for-vim
+" Also consider auto-pairs plugin https://github.com/jiangmiao/auto-pairs
+" Auto close brackets
+" inoremap " ""<left>
+" inoremap ' ''<left>
+" inoremap ( ()<left>
+" inoremap [ []<left>
+" inoremap { {}<left>
+" inoremap {<CR> {<CR>}<ESC>O
+" inoremap {;<CR> {<CR>};<ESC>O
 
 augroup vagrant
   au!
