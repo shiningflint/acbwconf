@@ -8,6 +8,7 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
+Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-fugitive'
 Plug 'dhruvasagar/vim-zoom'
 Plug 'christoomey/vim-system-copy'
@@ -20,6 +21,9 @@ Plug 'morhetz/gruvbox'
 Plug 'scrooloose/nerdtree'
 Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
+Plug 'marcweber/vim-addon-mw-utils'
+Plug 'tomtom/tlib_vim'
+Plug 'garbas/vim-snipmate'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'elmcast/elm-vim'
 Plug 'elixir-editors/vim-elixir'
@@ -62,8 +66,14 @@ colorscheme gruvbox
 " run matchit for HTML jumps with %
 runtime macros/matchit.vim
 
+" SnipMate
+let g:snipMate = { 'snippet_version' : 1 }
+
 " make jk or jj leave insert mode
 inoremap jj <esc>
+
+" NVIM 0.8 bug hack fix
+let g:NERDTreeMinimalMenu=1
 
 " Reload syntax highlighting with F12
 noremap <F12> <Esc>:syntax sync fromstart<CR>
@@ -72,12 +82,18 @@ inoremap <F12> <C-o>:syntax sync fromstart<CR>
 " Buffer switching
 nnoremap <F5> :Buffers<CR>
 
+" No highlight on enter
+nnoremap <silent> <CR> :nohlsearch<CR><CR>
+
 " Remap Files fzf
 map <leader>t :Files<CR>
 map <leader>ts :Files src/<CR>
 map <leader>ta :Files app/<CR>
 map <leader>ts :Files spec/<CR>
 map <leader>tc :Files config/<CR>
+
+" map Git log of a file
+map <leader>gh :Git log -p -- %<CR>
 
 " map NERDTreeFind
 map <leader>nt :NERDTree<CR>
@@ -145,6 +161,9 @@ set ic
 " Set hidden will hide unsaved files instead of closing it.
 " For now, I'm using it for search and replace multiple sources
 set hidden
+
+" Limit mouse mode only to visual mode
+set mouse=v
 
 " Teach vim to syntax highlight Vagrantfile as ruby
 "
@@ -241,7 +260,3 @@ iab ELMSPA module Main exposing (main)
       \<CR>view : Model -> Browser.Document Msg
       \<CR>view model = { title = "Main title" , body = [ div [] [ text "Hello babanas" ] ] }
       \<CR>main = Browser.application { init = init , update = update , view = view , onUrlChange = onUrlChange , onUrlRequest = onUrlRequest , subscriptions = subscriptions }
-
-iab etag <%= %><Left><Left><Left>
-iab etags <%= t("").html_safe %><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left>
-iab etagt <%= t("") %><Left><Left><Left><Left><Left>
